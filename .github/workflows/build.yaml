@@ -3,19 +3,21 @@ name: Build Magento 2 releases
 on:
   push:
 
-matrix:
-  include:
-    - name: "Magento 2.4.7-p3"
-      env:
-        MAGENTO_VERSION: 2.4.7-p3
-        PHP_VERSION: 8.2
-    - name: "Magento 2.3.7-p4"
-      env:
-        MAGENTO_VERSION: 2.3.7-p4
-        PHP_VERSION: 7.4
 
 jobs:
   build:
+    strategy:
+      matrix:
+        include:
+          - name: "Magento 2.4.7-p3"
+            env:
+              MAGENTO_VERSION: 2.4.7-p3
+              PHP_VERSION: 8.2
+          - name: "Magento 2.3.7-p4"
+            env:
+              MAGENTO_VERSION: 2.3.7-p4
+              PHP_VERSION: 7.4
+
     runs-on: ubuntu-latest
 
     name: Build Magento 2 release
