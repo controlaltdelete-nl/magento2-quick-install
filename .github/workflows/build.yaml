@@ -48,10 +48,10 @@ jobs:
           unzip -q magento.zip -d .
           rm magento.zip
 
-          if [ ${{ matrix.MAGENTO_VERSION }} != "2.3.7-p4" ]; then
+#          if [ ${{ matrix.MAGENTO_VERSION }} != "2.3.7-p4" ]; then
             composer config --no-plugins allow-plugins.laminas/laminas-dependency-plugin
             composer config --no-plugins allow-plugins.dealerdirect/phpcodesniffer-composer-installer
-          fi
+#          fi
 
           ddev composer config --unset repositories.0
           ddev composer config repositories.fooman composer https://repo-magento-mirror.fooman.co.nz/
