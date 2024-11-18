@@ -20,7 +20,7 @@ jobs:
 
     name: Build Magento 2 release
 
-    tasks:
+    steps:
       - name: Checkout code
         uses: actions/checkout@v4
 
