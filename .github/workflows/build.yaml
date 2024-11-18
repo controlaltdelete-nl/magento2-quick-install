@@ -44,7 +44,13 @@ jobs:
 
       - name: Create Magento install
         run: |
-          ddev exec composer create-project --repository-url=https://repo-magento-mirror.fooman.co.nz/ magento/project-community-edition=${{ matrix.MAGENTO_VERSION }} /tmp/exampleproject
+          curl -o magento.zip https://repo-magento-mirror.fooman.co.nz/dist/magento/$MAGENTO_TYPE/magento-project-community-edition-${{ matrix.MAGENTO_VERSION }}.zip
+          unzip -q magento.zip -d .
+          rm magento.zip
+          ddev composer config --unset repositories.0
+          ddev composer config repositories.fooman composer https://repo-magento-mirror.fooman.co.nz/
+          ddev composer install
+
           ddev exec rsync -a /tmp/exampleproject/ /var/www/html/
 
           ddev exec bin/magento setup:install \
