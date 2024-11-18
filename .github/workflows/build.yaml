@@ -49,9 +49,10 @@ jobs:
           rm magento.zip
 
           if [ ${{ matrix.MAGENTO_VERSION }} != "2.3.7-p4" ]; then
-            composer require --dev --no-update laminas/laminas-dependency-plugin
-            composer require --dev --no-update dealerdirect/phpcodesniffer-composer-installer
+            composer config --no-plugins allow-plugins.laminas/laminas-dependency-plugin
+            composer config --no-plugins allow-plugins.dealerdirect/phpcodesniffer-composer-installer
           fi
+
           ddev composer config --unset repositories.0
           ddev composer config repositories.fooman composer https://repo-magento-mirror.fooman.co.nz/
           ddev composer install
