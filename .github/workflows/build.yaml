@@ -44,7 +44,7 @@ jobs:
 
       - name: Create Magento install
         run: |
-          curl -o magento.zip https://repo-magento-mirror.fooman.co.nz/dist/magento/$MAGENTO_TYPE/magento-project-community-edition-${{ matrix.MAGENTO_VERSION }}.zip
+          curl -o magento.zip https://repo-magento-mirror.fooman.co.nz/dist/magento/project-community-edition/magento-project-community-edition-${{ matrix.MAGENTO_VERSION }}.zip
           unzip -q magento.zip -d .
           rm magento.zip
           ddev composer config --unset repositories.0
