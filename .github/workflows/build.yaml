@@ -37,9 +37,9 @@ jobs:
           mkdir .ddev/rabbitmq-build/
           wget https://raw.githubusercontent.com/ddev/ddev-contrib/master/docker-compose-services/rabbitmq/docker-compose.rabbitmq.yaml -O .ddev/docker-compose.rabbitmq.yaml
           wget https://raw.githubusercontent.com/ddev/ddev-contrib/master/docker-compose-services/rabbitmq/rabbitmq-build/enabled_plugins -O .ddev/rabbitmq-build/enabled_plugins
-          sed -i '' '/ports:/d;/15672:15672/d;/5672:5672/d' .ddev/docker-compose.rabbitmq.yaml
-          sed -i '' 's/RABBITMQ_DEFAULT_USER=rabbitmq/RABBITMQ_DEFAULT_USER=guest/' .ddev/docker-compose.rabbitmq.yaml
-          sed -i '' 's/RABBITMQ_DEFAULT_PASS=rabbitmq/RABBITMQ_DEFAULT_PASS=guest/' .ddev/docker-compose.rabbitmq.yaml
+          sed -i '/ports:/d;/15672:15672/d;/5672:5672/d' .ddev/docker-compose.rabbitmq.yaml
+          sed -i 's/RABBITMQ_DEFAULT_USER=rabbitmq/RABBITMQ_DEFAULT_USER=guest/' .ddev/docker-compose.rabbitmq.yaml
+          sed -i 's/RABBITMQ_DEFAULT_PASS=rabbitmq/RABBITMQ_DEFAULT_PASS=guest/' .ddev/docker-compose.rabbitmq.yaml  
           ddev start
 
       - name: Create Magento install
