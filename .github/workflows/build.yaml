@@ -50,6 +50,7 @@ jobs:
 
           composer config --no-plugins allow-plugins.laminas/laminas-dependency-plugin true
           composer config --no-plugins allow-plugins.dealerdirect/phpcodesniffer-composer-installer true
+          composer config --no-plugins allow-plugins.magento/composer-root-update-plugin true
 
           ddev composer config --unset repositories.0
           ddev composer config repositories.fooman composer https://repo-magento-mirror.fooman.co.nz/
