@@ -149,7 +149,10 @@ jobs:
           ddev exec magerun2 config:store:set admin/security/session_lifetime 31536000
           ddev exec magerun2 config:store:set web/cookie/cookie_lifetime 31536000
           ddev exec magerun2 config:store:set admin/security/password_lifetime 0
-          ddev exec bin/magento module:disable Magento_TwoFactorAuth -f
+          
+          if grep -q "Magento_TwoFactorAuth" "$FILE"; then
+            ddev exec bin/magento module:disable Magento_TwoFactorAuth -f
+          fi
 
       - name: Create ZIP files
         run: |
