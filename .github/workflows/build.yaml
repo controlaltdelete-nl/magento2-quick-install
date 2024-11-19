@@ -73,12 +73,6 @@ jobs:
               --db-name=db \
               --db-user=db \
               --db-password=db \
-              --elasticsearch-host=elasticsearch \
-              --elasticsearch-port=9200 \
-              --elasticsearch-index-prefix=magento2 \
-              --elasticsearch-enable-auth=0 \
-              --elasticsearch-timeout=15 \
-              --http-cache-hosts=varnish:80 \
               --session-save=redis \
               --session-save-redis-host=redis \
               --session-save-redis-port=6379 \
@@ -120,7 +114,6 @@ jobs:
               --elasticsearch-index-prefix=magento2 \
               --elasticsearch-enable-auth=0 \
               --elasticsearch-timeout=15 \
-              --http-cache-hosts=varnish:80 \
               --session-save=redis \
               --session-save-redis-host=redis \
               --session-save-redis-port=6379 \
@@ -150,8 +143,8 @@ jobs:
           ddev exec bin/magento
           ddev exec bin/magento deploy:mode:set developer
           ddev exec magerun2 config:store:set admin/security/password_lifetime 0
-          ddev exec magerun2 config:store:set --lock-env web/unsecure/base_url "https://magento.test/"
-          ddev exec magerun2 config:store:set --lock-env web/secure/base_url "https://magento.test/"
+          ddev exec magerun2 config:set --lock-env web/unsecure/base_url "https://magento.test/"
+          ddev exec magerun2 config:set --lock-env web/secure/base_url "https://magento.test/"
           ddev exec composer config minimum-stability dev
           ddev exec magerun2 config:store:set admin/security/session_lifetime 31536000
           ddev exec magerun2 config:store:set web/cookie/cookie_lifetime 31536000
