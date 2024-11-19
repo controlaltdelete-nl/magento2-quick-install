@@ -145,6 +145,7 @@ jobs:
 
       - name: Configure installation
         run: |
+          ddev exec bin/magento deploy:mode:set developer
           ddev exec bin/magento admin:user:create --admin-user=exampleuser --admin-password=examplepassword123 --admin-email=example@example.com --admin-firstname=Example --admin-lastname=User
           ddev exec magerun2 config:store:set admin/security/password_lifetime 0
           ddev exec magerun2 config:store:set --lock-env web/unsecure/base_url "https://magento.test/"
@@ -154,7 +155,6 @@ jobs:
           ddev exec magerun2 config:store:set web/cookie/cookie_lifetime 31536000
           ddev exec magerun2 config:store:set admin/security/password_lifetime 0
           ddev exec bin/magento module:disable Magento_TwoFactorAuth -f
-          ddev exec bin/magento deploy:mode:set developer
 
       - name: Create ZIP files
         run: |
