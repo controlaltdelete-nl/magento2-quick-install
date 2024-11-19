@@ -143,8 +143,8 @@ jobs:
           ddev exec bin/magento
           ddev exec bin/magento deploy:mode:set developer
           ddev exec magerun2 config:store:set admin/security/password_lifetime 0
-          ddev exec magerun2 config:set --lock-env web/unsecure/base_url "https://magento.test/"
-          ddev exec magerun2 config:set --lock-env web/secure/base_url "https://magento.test/"
+          ddev exec magerun2 config:store:set web/unsecure/base_url "https://magento.test/"
+          ddev exec magerun2 config:store:set web/secure/base_url "https://magento.test/"
           ddev exec composer config minimum-stability dev
           ddev exec magerun2 config:store:set admin/security/session_lifetime 31536000
           ddev exec magerun2 config:store:set web/cookie/cookie_lifetime 31536000
