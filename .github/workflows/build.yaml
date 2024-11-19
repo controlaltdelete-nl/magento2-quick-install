@@ -169,6 +169,6 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           path: |
-            magento2-${{ matrix.MAGENTO_VERSION }}.zip
-            magento2-${{ matrix.MAGENTO_VERSION }}-with-db.zip
-            magento2-${{ matrix.MAGENTO_VERSION }}-with-sampledata.zip
+            magento-${{ matrix.MAGENTO_VERSION }}.zip
+            magento-${{ matrix.MAGENTO_VERSION }}-with-db.zip
+            magento-${{ matrix.MAGENTO_VERSION }}-with-sampledata.zip
