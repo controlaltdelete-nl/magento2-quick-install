@@ -56,7 +56,9 @@ jobs:
           ddev composer config --unset repositories.0
           ddev composer config repositories.fooman composer https://repo-magento-mirror.fooman.co.nz/
           ddev composer install
-          
+
+          set -e
+          set -x
           VERSION="${{ matrix.MAGENTO_VERSION }}"
           MAIN_VERSION=${version:0:3}
 
