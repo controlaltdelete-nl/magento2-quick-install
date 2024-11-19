@@ -60,6 +60,8 @@ jobs:
           VERSION="${{ matrix.MAGENTO_VERSION }}"
           MAIN_VERSION=${version:0:3}
           
+          echo "Main version: $MAIN_VERSION"
+          
           if [ "$MAIN_VERSION" == "2.4" ]; then
             ddev exec bin/magento setup:install \
               --backend-frontname=admin \
