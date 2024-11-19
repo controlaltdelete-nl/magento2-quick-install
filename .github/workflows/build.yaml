@@ -62,7 +62,7 @@ jobs:
           VERSION="${{ matrix.MAGENTO_VERSION }}"
           MAIN_VERSION=${VERSION:0:3}
 
-          if [ "$MAIN_VERSION" == "2.4" ]; then
+          if [ "$MAIN_VERSION" == "2.3" ]; then
             ddev exec bin/magento setup:install \
               --backend-frontname=admin \
               --amqp-host=rabbitmq \
