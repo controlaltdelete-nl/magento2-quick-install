@@ -56,46 +56,92 @@ jobs:
           ddev composer config --unset repositories.0
           ddev composer config repositories.fooman composer https://repo-magento-mirror.fooman.co.nz/
           ddev composer install
-
-          ddev exec bin/magento setup:install \
-            --backend-frontname=admin \
-            --amqp-host=rabbitmq \
-            --amqp-port=5672 \
-            --amqp-user=guest \
-            --amqp-password=guest \
-            --db-host=db \
-            --db-name=db \
-            --db-user=db \
-            --db-password=db \
-            --search-engine=elasticsearch7 \
-            --elasticsearch-host=elasticsearch \
-            --elasticsearch-port=9200 \
-            --elasticsearch-index-prefix=magento2 \
-            --elasticsearch-enable-auth=0 \
-            --elasticsearch-timeout=15 \
-            --http-cache-hosts=varnish:80 \
-            --session-save=redis \
-            --session-save-redis-host=redis \
-            --session-save-redis-port=6379 \
-            --session-save-redis-db=2 \
-            --session-save-redis-max-concurrency=20 \
-            --cache-backend=redis \
-            --cache-backend-redis-server=redis \
-            --cache-backend-redis-db=0 \
-            --cache-backend-redis-port=6379 \
-            --page-cache=redis \
-            --page-cache-redis-server=redis \
-            --page-cache-redis-db=1 \
-            --page-cache-redis-port=6379 \
-            --base-url=https://$BASEURL \
-            --timezone=Europe/Amsterdam \
-            --currency=EUR \
-            --admin-user=michiel \
-            --admin-password=asdfasdf1 \
-            --admin-email=michiel@controlaltdelete.nl \
-            --admin-firstname=Michiel \
-            --admin-lastname=Gerritsen \
-            --use-rewrites=1
+          
+          VERSION="${{ matrix.MAGENTO_VERSION }}"
+          MAIN_VERSION=${version:0:3}
+          
+          if [ "$MAIN_VERSION" == "2.4" ]; then
+            ddev exec bin/magento setup:install \
+              --backend-frontname=admin \
+              --amqp-host=rabbitmq \
+              --amqp-port=5672 \
+              --amqp-user=guest \
+              --amqp-password=guest \
+              --db-host=db \
+              --db-name=db \
+              --db-user=db \
+              --db-password=db \
+              --elasticsearch-host=elasticsearch \
+              --elasticsearch-port=9200 \
+              --elasticsearch-index-prefix=magento2 \
+              --elasticsearch-enable-auth=0 \
+              --elasticsearch-timeout=15 \
+              --http-cache-hosts=varnish:80 \
+              --session-save=redis \
+              --session-save-redis-host=redis \
+              --session-save-redis-port=6379 \
+              --session-save-redis-db=2 \
+              --session-save-redis-max-concurrency=20 \
+              --cache-backend=redis \
+              --cache-backend-redis-server=redis \
+              --cache-backend-redis-db=0 \
+              --cache-backend-redis-port=6379 \
+              --page-cache=redis \
+              --page-cache-redis-server=redis \
+              --page-cache-redis-db=1 \
+              --page-cache-redis-port=6379 \
+              --base-url=https://$BASEURL \
+              --timezone=Europe/Amsterdam \
+              --currency=EUR \
+              --admin-user=michiel \
+              --admin-password=asdfasdf1 \
+              --admin-email=michiel@controlaltdelete.nl \
+              --admin-firstname=Michiel \
+              --admin-lastname=Gerritsen \
+              --use-rewrites=1
+          fi
+          
+          if [ "$MAIN_VERSION" == "2.4" ]; then
+            ddev exec bin/magento setup:install \
+              --backend-frontname=admin \
+              --amqp-host=rabbitmq \
+              --amqp-port=5672 \
+              --amqp-user=guest \
+              --amqp-password=guest \
+              --db-host=db \
+              --db-name=db \
+              --db-user=db \
+              --db-password=db \
+              --search-engine=elasticsearch7 \
+              --elasticsearch-host=elasticsearch \
+              --elasticsearch-port=9200 \
+              --elasticsearch-index-prefix=magento2 \
+              --elasticsearch-enable-auth=0 \
+              --elasticsearch-timeout=15 \
+              --http-cache-hosts=varnish:80 \
+              --session-save=redis \
+              --session-save-redis-host=redis \
+              --session-save-redis-port=6379 \
+              --session-save-redis-db=2 \
+              --session-save-redis-max-concurrency=20 \
+              --cache-backend=redis \
+              --cache-backend-redis-server=redis \
+              --cache-backend-redis-db=0 \
+              --cache-backend-redis-port=6379 \
+              --page-cache=redis \
+              --page-cache-redis-server=redis \
+              --page-cache-redis-db=1 \
+              --page-cache-redis-port=6379 \
+              --base-url=https://$BASEURL \
+              --timezone=Europe/Amsterdam \
+              --currency=EUR \
+              --admin-user=michiel \
+              --admin-password=asdfasdf1 \
+              --admin-email=michiel@controlaltdelete.nl \
+              --admin-firstname=Michiel \
+              --admin-lastname=Gerritsen \
+              --use-rewrites=1
+          fi
 
       - name: Create example admin user
         run: |
