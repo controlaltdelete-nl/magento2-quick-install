@@ -143,18 +143,18 @@ jobs:
               --use-rewrites=1
           fi
 
-      - name: Create example admin user
+      - name: Configure installation
         run: |
           ddev exec bin/magento admin:user:create --admin-user=exampleuser --admin-password=examplepassword123 --admin-email=example@example.com --admin-firstname=Example --admin-lastname=User
-          ddev exec bin/magento config:set admin/security/password_lifetime 0
-          ddev exec bin/magento config:set --lock-env web/unsecure/base_url "https://magento.test/"
-          ddev exec bin/magento config:set --lock-env web/secure/base_url "https://magento.test/"
+          ddev exec magerun2 config:set admin/security/password_lifetime 0
+          ddev exec magerun2 config:set --lock-env web/unsecure/base_url "https://magento.test/"
+          ddev exec magerun2 config:set --lock-env web/secure/base_url "https://magento.test/"
+          ddev exec composer config minimum-stability dev
+          ddev exec magerun2 config:set admin/security/session_lifetime 31536000
+          ddev exec magerun2 config:set web/cookie/cookie_lifetime 31536000
+          ddev exec magerun2 config:set admin/security/password_lifetime 0
           ddev exec bin/magento module:disable Magento_TwoFactorAuth -f
           ddev exec bin/magento deploy:mode:set developer
-          ddev exec composer config minimum-stability dev
-          ddev exec bin/magento config:set admin/security/session_lifetime 31536000
-          ddev exec bin/magento config:set web/cookie/cookie_lifetime 31536000
-          ddev exec bin/magento config:set admin/security/password_lifetime 0
 
       - name: Create ZIP files
         run: |
