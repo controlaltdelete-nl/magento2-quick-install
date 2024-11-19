@@ -62,8 +62,6 @@ jobs:
           VERSION="${{ matrix.MAGENTO_VERSION }}"
           MAIN_VERSION=${VERSION:0:3}
 
-          echo "Main version: $MAIN_VERSION"
-
           if [ "$MAIN_VERSION" == "2.4" ]; then
             ddev exec bin/magento setup:install \
               --backend-frontname=admin \
@@ -94,14 +92,14 @@ jobs:
               --page-cache-redis-server=redis \
               --page-cache-redis-db=1 \
               --page-cache-redis-port=6379 \
-              --base-url=https://$BASEURL \
+              --base-url=https://magento.test \
               --timezone=Europe/Amsterdam \
               --currency=EUR \
-              --admin-user=michiel \
-              --admin-password=asdfasdf1 \
-              --admin-email=michiel@controlaltdelete.nl \
-              --admin-firstname=Michiel \
-              --admin-lastname=Gerritsen \
+              --admin-user=exampleuser \
+              --admin-password=examplepassword123 \
+              --admin-email=johndoe@magento.test \
+              --admin-firstname=John \
+              --admin-lastname=Doe \
               --use-rewrites=1
           fi
           
@@ -136,14 +134,14 @@ jobs:
               --page-cache-redis-server=redis \
               --page-cache-redis-db=1 \
               --page-cache-redis-port=6379 \
-              --base-url=https://$BASEURL \
+              --base-url=https://magento.test \
               --timezone=Europe/Amsterdam \
               --currency=EUR \
-              --admin-user=michiel \
-              --admin-password=asdfasdf1 \
-              --admin-email=michiel@controlaltdelete.nl \
-              --admin-firstname=Michiel \
-              --admin-lastname=Gerritsen \
+              --admin-user=exampleuser \
+              --admin-password=examplepassword123 \
+              --admin-email=johndoe@magento.test \
+              --admin-firstname=John \
+              --admin-lastname=Doe \
               --use-rewrites=1
           fi
 
@@ -151,7 +149,6 @@ jobs:
         run: |
           ddev exec bin/magento
           ddev exec bin/magento deploy:mode:set developer
-          ddev exec bin/magento admin:user:create --admin-user=exampleuser --admin-password=examplepassword123 --admin-email=example@example.com --admin-firstname=Example --admin-lastname=User
           ddev exec magerun2 config:store:set admin/security/password_lifetime 0
           ddev exec magerun2 config:store:set --lock-env web/unsecure/base_url "https://magento.test/"
           ddev exec magerun2 config:store:set --lock-env web/secure/base_url "https://magento.test/"
