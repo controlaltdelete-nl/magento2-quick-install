@@ -145,6 +145,7 @@ jobs:
 
       - name: Configure installation
         run: |
+          ddev exec bin/magento
           ddev exec bin/magento deploy:mode:set developer
           ddev exec bin/magento admin:user:create --admin-user=exampleuser --admin-password=examplepassword123 --admin-email=example@example.com --admin-firstname=Example --admin-lastname=User
           ddev exec magerun2 config:store:set admin/security/password_lifetime 0
