@@ -146,13 +146,13 @@ jobs:
       - name: Configure installation
         run: |
           ddev exec bin/magento admin:user:create --admin-user=exampleuser --admin-password=examplepassword123 --admin-email=example@example.com --admin-firstname=Example --admin-lastname=User
-          ddev exec magerun2 config:set admin/security/password_lifetime 0
-          ddev exec magerun2 config:set --lock-env web/unsecure/base_url "https://magento.test/"
-          ddev exec magerun2 config:set --lock-env web/secure/base_url "https://magento.test/"
+          ddev exec magerun2 config:store:set admin/security/password_lifetime 0
+          ddev exec magerun2 config:store:set --lock-env web/unsecure/base_url "https://magento.test/"
+          ddev exec magerun2 config:store:set --lock-env web/secure/base_url "https://magento.test/"
           ddev exec composer config minimum-stability dev
-          ddev exec magerun2 config:set admin/security/session_lifetime 31536000
-          ddev exec magerun2 config:set web/cookie/cookie_lifetime 31536000
-          ddev exec magerun2 config:set admin/security/password_lifetime 0
+          ddev exec magerun2 config:store:set admin/security/session_lifetime 31536000
+          ddev exec magerun2 config:store:set web/cookie/cookie_lifetime 31536000
+          ddev exec magerun2 config:store:set admin/security/password_lifetime 0
           ddev exec bin/magento module:disable Magento_TwoFactorAuth -f
           ddev exec bin/magento deploy:mode:set developer
 
@@ -166,3 +166,11 @@ jobs:
           ddev exec bin/magento sampledata:deploy
           ddev exec magerun2 db:dump -c gz -n magento2.sql.gz
           ddev exec zip -r /var/www/html/magento2-${{ matrix.MAGENTO_VERSION }}-with-sampledata.zip /var/www/html
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          path: |
+            magento2-${{ matrix.MAGENTO_VERSION }}.zip
+            magento2-${{ matrix.MAGENTO_VERSION }}-with-db.zip
+            magento2-${{ matrix.MAGENTO_VERSION }}-with-sampledata.zip
