@@ -169,6 +169,14 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           path: |
-            magento-${{ matrix.MAGENTO_VERSION }}.zip
-            magento-${{ matrix.MAGENTO_VERSION }}-with-db.zip
-            magento-${{ matrix.MAGENTO_VERSION }}-with-sampledata.zip
+            magento-${{ matrix.MAGENTO_VERSION }}-php-${{ matrix.PHP_VERSION }}.zip
+            magento-${{ matrix.MAGENTO_VERSION }}-php-${{ matrix.PHP_VERSION }}-with-db.zip
+            magento-${{ matrix.MAGENTO_VERSION }}-php-${{ matrix.PHP_VERSION }}-with-sampledata.zip
+
+      - name: Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            magento-${{ matrix.MAGENTO_VERSION }}-php-${{ matrix.PHP_VERSION }}.zip
+            magento-${{ matrix.MAGENTO_VERSION }}-php-${{ matrix.PHP_VERSION }}-with-db.zip
+            magento-${{ matrix.MAGENTO_VERSION }}-php-${{ matrix.PHP_VERSION }}-with-sampledata.zip
