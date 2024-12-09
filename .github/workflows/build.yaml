@@ -165,14 +165,6 @@ jobs:
 #          ddev exec magerun2 db:dump -c gz -n magento2.sql.gz
 #          ddev exec zip -qr /var/www/html/magento-${{ matrix.MAGENTO_VERSION }}-php-${{ matrix.PHP_VERSION }}-with-sampledata.zip /var/www/html --exclude "/var/www/html/.github/*" "/var/www/html/.ddev/*"
 
-      - name: Upload artifacts
-        uses: actions/upload-artifact@v4
-        with:
-          path: |
-            magento-${{ matrix.MAGENTO_VERSION }}-php-${{ matrix.PHP_VERSION }}.zip
-#            magento-${{ matrix.MAGENTO_VERSION }}-php-${{ matrix.PHP_VERSION }}-with-db.zip
-#            magento-${{ matrix.MAGENTO_VERSION }}-php-${{ matrix.PHP_VERSION }}-with-sampledata.zip
-
       - name: Release
         uses: softprops/action-gh-release@v2
         with:
