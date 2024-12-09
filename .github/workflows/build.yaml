@@ -156,14 +156,14 @@ jobs:
 
       - name: Create ZIP files
         run: |
-          ddev exec zip -qr /var/www/html/magento2-${{ matrix.MAGENTO_VERSION }}-php-${{ matrix.PHP_VERSION }}.zip /var/www/html --exclude "/var/www/html/.github/*" "/var/www/html/.ddev/*"
+          ddev exec zip -qr /var/www/html/magento-${{ matrix.MAGENTO_VERSION }}-php-${{ matrix.PHP_VERSION }}.zip /var/www/html --exclude "/var/www/html/.github/*" "/var/www/html/.ddev/*"
 #          ddev exec magerun2 db:dump -c gz -n magento2.sql.gz
-#          ddev exec zip -qr /var/www/html/magento2-${{ matrix.MAGENTO_VERSION }}-php-${{ matrix.PHP_VERSION }}-with-db.zip /var/www/html --exclude "/var/www/html/.github/*" "/var/www/html/.ddev/*"
+#          ddev exec zip -qr /var/www/html/magento-${{ matrix.MAGENTO_VERSION }}-php-${{ matrix.PHP_VERSION }}-with-db.zip /var/www/html --exclude "/var/www/html/.github/*" "/var/www/html/.ddev/*"
 
           # Install sample data
 #          ddev exec bin/magento sampledata:deploy
 #          ddev exec magerun2 db:dump -c gz -n magento2.sql.gz
-#          ddev exec zip -qr /var/www/html/magento2-${{ matrix.MAGENTO_VERSION }}-php-${{ matrix.PHP_VERSION }}-with-sampledata.zip /var/www/html --exclude "/var/www/html/.github/*" "/var/www/html/.ddev/*"
+#          ddev exec zip -qr /var/www/html/magento-${{ matrix.MAGENTO_VERSION }}-php-${{ matrix.PHP_VERSION }}-with-sampledata.zip /var/www/html --exclude "/var/www/html/.github/*" "/var/www/html/.ddev/*"
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
